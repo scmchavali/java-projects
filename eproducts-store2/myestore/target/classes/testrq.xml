@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+ <stor:getAllProducts xmlns:stor="http://store2.products.com/">
+         <!--Optional:-->
+         <arg0>mobile</arg0>
+ </stor:getAllProducts>

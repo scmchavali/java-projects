@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="ProductStoreImplService" targetNamespace="http://store2.products.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://store2.products.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+    <schema xmlns="http://www.w3.org/2001/XMLSchema">
+  <import namespace="http://store2.products.com/" schemaLocation="productstoreimpl_schema1.xsd"/>
+</schema>
+  </wsdl:types>
+  <wsdl:message name="getAllProductsResponse">
+    <wsdl:part name="parameters" element="tns:getAllProductsResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="SQLException">
+    <wsdl:part name="SQLException" element="tns:SQLException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllProducts">
+    <wsdl:part name="parameters" element="tns:getAllProducts">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="ProductStoreImpl">
+    <wsdl:operation name="getAllProducts">
+      <wsdl:input name="getAllProducts" message="tns:getAllProducts">
+    </wsdl:input>
+      <wsdl:output name="getAllProductsResponse" message="tns:getAllProductsResponse">
+    </wsdl:output>
+      <wsdl:fault name="SQLException" message="tns:SQLException">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ProductStoreImplServiceSoapBinding" type="tns:ProductStoreImpl">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getAllProducts">
+      <soap:operation soapAction="urn:GetAllProducts" style="document"/>
+      <wsdl:input name="getAllProducts">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAllProductsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SQLException">
+        <soap:fault name="SQLException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ProductStoreImplService">
+    <wsdl:port name="ProductStoreImplPort" binding="tns:ProductStoreImplServiceSoapBinding">
+      <soap:address location="http://localhost:8080/eproducts-store2/services/ProductStorePort"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
